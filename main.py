@@ -1,13 +1,16 @@
-from flask import Flask, jsonify
-import os
+from flask import Flask, request, redirect, url_for, flash, jsonify
+from keras.models import load_model
+import numpy as np
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def index():
-    return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
+def makecalc():
+    data = request.get_json()
+    prediction = np.array2string(model.predict(data))
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=5000))
+    model = load_model('../models/final_prediction')
+    app.run(debug=True, host='0.0.0.0')
