@@ -5,12 +5,13 @@ import numpy as np
 app = Flask(__name__)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/api/', methods=['POST'])
 def makecalc():
     data = request.get_json()
     prediction = np.array2string(model.predict(data))
 
+    return jsonify(prediction)
 
 if __name__ == '__main__':
-    model = load_model('../models/final_prediction')
+    model = load_model('ai-api/models/final_prediction')
     app.run(debug=True, host='0.0.0.0')
