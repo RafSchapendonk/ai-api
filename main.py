@@ -5,7 +5,7 @@ import numpy as np
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['POST'])
 def makecalc():
     data = request.get_json()
     prediction = np.array2string(model.predict(data))
