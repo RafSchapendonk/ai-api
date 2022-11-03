@@ -46,5 +46,3 @@ if __name__ == '__main__':
     # X_test = pd.read_csv('./X_test.csv')
     model = load_model('models/final_prediction')
     app.run(debug=1, host="0.0.0.0", port=os.getenv("PORT") or 5000)
-
-#     empty commit
