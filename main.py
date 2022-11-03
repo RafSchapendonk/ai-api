@@ -15,9 +15,9 @@ app = Flask(__name__)
 @app.route('/api/', methods=['POST'])
 def makecalc():
     data = request.get_json()
-    prediction = model.predict(data).tolist()
+    prediction = np.array2string(model.predict(data))
 
-    return prediction
+    return jsonify(prediction)
 
 # def plot_html():
 #     data = request.get_json()
@@ -43,5 +43,6 @@ def makecalc():
 #     return f"<img src='data:image/png;base64,{encoded}' alt='Plot unable to load'/>"
 
 if __name__ == '__main__':
+    # X_test = pd.read_csv('./X_test.csv')
     model = load_model('models/final_prediction')
     app.run(debug=1, host="0.0.0.0", port=os.getenv("PORT") or 5000)
