@@ -2,6 +2,7 @@ import base64
 import io
 
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from keras.models import load_model
 # import matplotlib.pyplot as plt
 import numpy as np
@@ -10,7 +11,7 @@ import os
 # import shap
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/api/', methods=['POST'])
 def makecalc():
