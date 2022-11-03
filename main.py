@@ -15,9 +15,9 @@ app = Flask(__name__)
 @app.route('/api/', methods=['POST'])
 def makecalc():
     data = request.get_json()
-    prediction = np.array(model.predict(data))
+    prediction = model.predict(data).tolist()
 
-    return jsonify(prediction)
+    return prediction
 
 # def plot_html():
 #     data = request.get_json()
